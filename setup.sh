@@ -1,7 +1,7 @@
 #!/bin/bash
 #set -Ceuo pipefail
 
-readonly DOTFILES=( .vimrc .tmux.conf .zshrc)
+readonly DOTFILES=( .vimrc .tmux.conf .zshrc .config/nvim/init.lua .config/nvim/dein.toml)
 
 function usage() {
 	echo "Usage:"
@@ -38,8 +38,8 @@ function unlink() {
 function link() {
 	for file in ${DOTFILES[@]}
 	do
-		echo $file
-		ln -s ~/dotfiles/$file ~
+		echo "~/dotfiles/"$file "~/"$file
+		ln -fs ~/dotfiles/$file ~/$file
 	done
 }
 
