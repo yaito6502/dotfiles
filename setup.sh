@@ -1,52 +1,22 @@
 #!/bin/bash
 #set -Ceuo pipefail
 
-readonly DOTFILES=( .vimrc .tmux.conf .zshrc .config/nvim/init.lua .config/nvim/dein.toml)
+DOT_DIRECTORY="${HOME}/dotfiles"
 
-function usage() {
-	echo "Usage:"
-	echo "  "./setup.sh [--unlink]""
-	echo
-	echo "Options:"
-	echo "  --unlink"
-	echo "    unlink dotfiles"
+function link_files() {
+for f in .??*
+  do
+    # Force remove the vim directory if it's already there
+    [ -n "${OVERWRITE}" -a -e ${HOME}/${f} ] && rm -f ${HOME}/${f}
+    if [ ! -e ${HOME}/${f} ]; then
+      # If you have ignore files, add file/directory name here
+      [[ ${f} = ".git" ]] && continue
+      [[ ${f} = ".gitignore" ]] && continue
+      ln -snfv ${DOT_DIRECTORY}/${f} ${HOME}/${f}
+    fi
+  done
+
+  echo $(tput setaf 2)Deploy dotfiles complete!. ✔︎$(tput sgr0)
 }
 
-function parse() {
-	while (($# > 0)); do
-		case "$1" in
-			--unlink)
-				unlink
-				exit 0
-				;;
-			*)
-				usage
-				exit 0
-				;;
-		esac
-	done
-}
-
-function unlink() {
-	for file in $DOTFILES
-	do
-		echo $file
-		unlink ~/$file
-	done
-}
-
-function link() {
-	for file in ${DOTFILES[@]}
-	do
-		echo "~/dotfiles/"$file "~/"$file
-		ln -fs ~/dotfiles/$file ~/$file
-	done
-}
-
-function main() {
-	parse $@
-	link
-	exit 0
-}
-
-main $@
+link_files
