@@ -6,6 +6,7 @@ REMOTE_URL="https://github.com/yaito6502/dotfiles.git"
 OVERWRITE=true
 
 function deploy() {
+	cd ${DOT_DIRECTORY}
 	for f in .??*
 		do
 # Force remove the vim directory if it's already there
