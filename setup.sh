@@ -16,10 +16,10 @@ function deploy() {
 			[[ ${f} = ".git" ]] && continue
 				[[ ${f} = ".gitignore" ]] && continue
 					ln -snfv ${DOT_DIRECTORY}/${f} ${HOME}/${f}
-	fi
-	done
+		fi
+			done
 
-	echo $(tput setaf 2)Deploy dotfiles complete!. ✔︎$(tput sgr0)
+			echo $(tput setaf 2)Deploy dotfiles complete!. ✔︎$(tput sgr0)
 }
 
 function has() {
@@ -32,9 +32,27 @@ function download() {
 			mkdir ${DOT_DIRECTORY}
 
 	git clone --recursive "${REMOTE_URL}" "${DOT_DIRECTORY}"
-	echo $(tput setaf 2)Download dotfiles complete!. ✔︎$(tput sgr0)
-	fi
+		echo $(tput setaf 2)Download dotfiles complete!. ✔︎$(tput sgr0)
+		fi
+}
+
+function initialize() {
+		echo "installing Homebrew ..."
+		which brew >/dev/null 2>&1 || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
+		echo $(tput setaf 2)Run brew doctor.$(tput sgr0)
+		which brew >/dev/null 2>&1 && brew doctor
+
+		echo $(tput setaf 2)Run brew update.$(tput sgr0)
+		which brew >/dev/null 2>&1 && brew update
+
+		echo $(tput setaf 2)Run brew upgrade.$(tput sgr0)
+		
+		brew upgrade
+		brew bundle
+		brew cleanup
 }
 
 download
 deploy
+initialize
