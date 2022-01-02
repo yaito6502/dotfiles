@@ -21,7 +21,7 @@ alias m='mkdir'
 alias t='touch'
 alias e='exa --icons'
 
-#eval "$(starship init zsh)"
+eval "$(starship init zsh)"
 
 man() {
 	env \
