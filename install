@@ -11,15 +11,14 @@ function has() {
 function download() {
 	if [ ! -d ${DOT_DIRECTORY} ]; then
 		echo "Downloading dotfiles..."
-			mkdir ${DOT_DIRECTORY}
+		mkdir ${DOT_DIRECTORY}
 
-	git clone --recursive "${REMOTE_URL}" "${DOT_DIRECTORY}"
+		git clone --recursive "${REMOTE_URL}" "${DOT_DIRECTORY}"
 		echo $(tput setaf 2)Download dotfiles complete!. ✔︎$(tput sgr0)
-		fi
+	fi
 }
 
 download
 cd ${DOT_DIRECTORY}
 make deploy
 make init
-source ${HOME}/.zshrc
