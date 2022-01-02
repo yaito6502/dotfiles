@@ -18,6 +18,8 @@ function download() {
 		fi
 }
 
+cd ${DOT_DIRECTORY}
 download
 make deploy
+make init
 source ${HOME}/.zshrc
