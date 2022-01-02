@@ -1,5 +1,10 @@
 #!/bin/bash
 
+git clone https://github.com/Homebrew/brew homebrew
+eval "$(homebrew/bin/brew shellenv)"
+brew update --force --quiet
+chmod -R go-w "$(brew --prefix)/share/zsh"
+
 echo "installing Homebrew ..."
 which brew >/dev/null 2>&1 || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
