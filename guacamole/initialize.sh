@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd ~
+
 #homebrew
 function install_brew() {
 	git clone https://github.com/Homebrew/brew homebrew
