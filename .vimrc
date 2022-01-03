@@ -15,4 +15,5 @@ set incsearch
 set wrapscan
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 set wildmode=list:longest
+set background=dark
 colorscheme iceberg

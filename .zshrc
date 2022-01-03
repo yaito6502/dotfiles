@@ -2,7 +2,7 @@ source ".zshrc.alias"
 source ".zshrc.plugin"
 
 if [ -d ~/homebrew ] ;then
-	eval "$(~homebrew/bin/brew shellenv)"
+	eval "$(~/homebrew/bin/brew shellenv)"
 fi
 
 HISTFILE=$HOME/.zsh_history
