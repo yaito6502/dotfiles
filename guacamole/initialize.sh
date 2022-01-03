@@ -21,7 +21,7 @@ chmod -R go-w "$(brew --prefix)/share/zsh"
 
 echo $(tput setaf 2)Run brew upgrade.$(tput sgr0)
 brew upgrade
-brew bundle
+brew bundle ~/dotfiles/guacamole/Brewfile
 brew cleanup
 
 #zinit
