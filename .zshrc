@@ -1,5 +1,5 @@
-source ".zshrc.alias"
-source ".zshrc.plugin"
+source ~/.zshrc.alias
+source ~/.zshrc.plugin
 
 if [ -d ~/homebrew ] ;then
 	eval "$(~/homebrew/bin/brew shellenv)"

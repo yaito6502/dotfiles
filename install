@@ -4,10 +4,6 @@ set -Ceuo pipefail
 DOT_DIRECTORY="${HOME}/dotfiles"
 REMOTE_URL="https://github.com/yaito6502/dotfiles.git"
 
-function has() {
-	type "$1" > /dev/null 2>&1
-}
-
 function download() {
 	if [ ! -d ${DOT_DIRECTORY} ]; then
 		echo "Downloading dotfiles..."
